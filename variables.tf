@@ -30,4 +30,7 @@ variable "database_cidr_blocks" {
     default = ["10.0.11.0/24","10.0.22.0/24"]
 }
 
-variable "eip_tags" {}
+variable "eip_tags" {
+    type = map 
+    deafult = {}
+}
