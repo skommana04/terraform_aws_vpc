@@ -15,7 +15,10 @@ variable "environment" {
     type = string
     default = "dev"
 }
-variable "vpc_tags" {}
+variable "vpc_tags" {
+        type = map 
+    default = {}
+}
 
 variable "public_cidr_blocks" {
     type = list(string)
