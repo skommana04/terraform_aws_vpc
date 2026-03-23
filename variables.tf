@@ -32,5 +32,5 @@ variable "database_cidr_blocks" {
 
 variable "eip_tags" {
     type = map 
-    deafult = {}
+    default = {}
 }
