@@ -37,3 +37,41 @@ variable "eip_tags" {
     type = map 
     default = {}
 }
+
+
+variable "nat_tags" {
+    type = map 
+    default = {}
+}
+
+variable "igw_tags" {
+    type = map 
+    default = {}
+}
+
+
+variable "public_subnet_tags" {
+    type = map 
+    default = {}
+}
+variable "private_subnet_tags" {
+    type = map 
+    default = {}
+}
+variable "database_subnet_tags" {
+    type = map 
+    default = {}
+}
+
+variable "public_routetable_tags" {
+    type = map 
+    default = {}
+}
+variable "private_routetable_tags" {
+    type = map 
+    default = {}
+}
+variable "database_routetable_tags" {
+    type = map 
+    default = {}
+}

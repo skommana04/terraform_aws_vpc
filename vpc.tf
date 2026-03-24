@@ -16,7 +16,7 @@ resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.main.id
 
     tags = merge(
-        var.vpc_tags,
+        var.igw_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-igw"
@@ -33,7 +33,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
   
     tags = merge(
-        var.vpc_tags,
+        var.public_subnet_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-public-${local.az_names[count.index]}"
@@ -47,7 +47,7 @@ resource "aws_subnet" "private" {
   availability_zone = local.az_names[count.index]
 
     tags = merge(
-        var.vpc_tags,
+        var.private_subnet_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-private-${local.az_names[count.index]}"
@@ -61,7 +61,7 @@ resource "aws_subnet" "database" {
  availability_zone = local.az_names[count.index] 
 
     tags = merge(
-        var.vpc_tags,
+        var.database_subnet_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-database-${local.az_names[count.index]}"
@@ -73,7 +73,7 @@ resource "aws_subnet" "database" {
 resource "aws_route_table" "rt_public" {
   vpc_id     = aws_vpc.main.id  
     tags = merge(
-        var.vpc_tags,
+        var.public_routetable_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-public-routetable"
@@ -83,7 +83,7 @@ resource "aws_route_table" "rt_public" {
 resource "aws_route_table" "rt_private" {
   vpc_id     = aws_vpc.main.id  
     tags = merge(
-        var.vpc_tags,
+        var.private_routetable_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-private-routetable"
@@ -93,7 +93,7 @@ resource "aws_route_table" "rt_private" {
 resource "aws_route_table" "rt_database" {
   vpc_id     = aws_vpc.main.id  
     tags = merge(
-        var.vpc_tags,
+        var.database_routetable_tags,
         local.common_tags,
         {
         Name = "${local.comman_name_suffix}-database-routetable"
@@ -135,7 +135,7 @@ resource "aws_nat_gateway" "example" {
   allocation_id = aws_eip.lb.id
   subnet_id     = aws_subnet.public[0].id
   tags = merge(
-    var.vpc_tags,
+    var.nat_tags,
     local.common_tags,
     {
     Name = "${local.comman_name_suffix}-nat"
